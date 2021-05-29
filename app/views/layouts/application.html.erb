@@ -10,6 +10,28 @@
   </head>
 
   <body>
+
+    <header>
+      <nav>
+        <span>LOGO</span>
+          <ul>
+            <% if admin_signed_in? %>
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+
+              <%= link_to 'ジャンル一覧', admin_genres_path %>
+
+              <%= link_to '商品一覧', admin_items_path %>
+
+              <%= link_to '会員一覧', admin_customers_path %>
+
+            <% else %>
+              <%= link_to 'ログイン', new_admin_session_path %>
+
+              <%= link_to '商品一覧', admin_items_path %>
+            <% end %>
+          </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
