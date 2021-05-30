@@ -1,11 +1,29 @@
 Rails.application.routes.draw do
+
   devise_for :customers, controllers: {
     :registrations => 'public/registrations',
     :sessions => 'public/sessions'
   }
 
-   devise_for :admins, :controllers => {
-      :sessions => 'admins/sessions'
+root to: 'public/homes#top'
+  get '/about' => 'public/homes#about'
+    scope module: :public do
+      resources :items, only:[:index, :show]
+        resources :cart_items, except:[:new, :show, :edit]
+    end
+
+
+
+
+
+
+
+
+
+
+
+    devise_for :admins, path: 'admin', controllers: {
+      :sessions => 'admin/sessions'
     }
 
   namespace :admin do

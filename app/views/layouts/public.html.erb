@@ -15,20 +15,7 @@
       <nav>
         <span>LOGO</span>
           <ul>
-            <% if customer_signed_in? %>
               <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
-
-              <%= link_to '商品一覧', items_path %>
-
-            <% else %>
-              <%= link_to 'ログイン', new_customer_session_path %>
-
-              <%= link_to '新規登録', new_customer_registration_path %>
-
-              <%= link_to 'About', about_path %>
-
-              <%= link_to '商品一覧', items_path %>
-            <% end %>
           </ul>
       </nav>
     </header>
