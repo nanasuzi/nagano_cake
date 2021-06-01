@@ -9,7 +9,12 @@ root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
     scope module: :public do
       resources :items, only:[:index, :show]
-        resources :cart_items, except:[:new, :show, :edit]
+        delete "/cart_items" => "cart_items#destroy_all"
+          resources :cart_items, except:[:new, :show, :edit]
+            resources :orders, only:[:new, :create, :index, :show]
+              post "/orders/check" => "orders#check"
+                get "/orders/complete" => "orders#complete"
+                  resources :addresses, except:[:new, :show]
     end
 
 
