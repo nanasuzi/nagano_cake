@@ -2,8 +2,8 @@
 
   <%= form_with model:@order, url:orders_check_path, method: :post, local: true do |f| %>
 <p>支払い方法</p>
-  <%= f.radio_button :method_of_payment, :credit %>クレジットカード
-  <%= f.radio_button :method_of_payment, :bank %>銀行振込
+  <%= f.radio_button :method_of_payment, :クレジットカード %>クレジットカード
+  <%= f.radio_button :method_of_payment, :銀行振込 %>銀行振込
 <p>お届け先</p>
   <%= f.radio_button :address_option, 0 %>ご自身の住所
   <%= current_customer.postal_code %>

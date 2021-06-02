@@ -1,22 +1,24 @@
 Rails.application.routes.draw do
 
-  devise_for :customers, controllers: {
-    :registrations => 'public/registrations',
-    :sessions => 'public/sessions'
-  }
-
 root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
     scope module: :public do
       resources :items, only:[:index, :show]
         delete "/cart_items" => "cart_items#destroy_all"
           resources :cart_items, except:[:new, :show, :edit]
-            resources :orders, only:[:new, :create, :index, :show]
-              post "/orders/check" => "orders#check"
-                get "/orders/complete" => "orders#complete"
+            get "/orders/complete" => "orders#complete"
+              resources :orders, only:[:new, :create, :index, :show]
+                post "/orders/check" => "orders#check"
                   resources :addresses, except:[:new, :show]
+                    resource :customers, only:[:show, :edit, :update]
+                      get "/customers/check" => "customers#check"
+                        patch "/customers/withdrawl" => "customers#withdrawl"
     end
 
+  devise_for :customers, controllers: {
+    :registrations => 'public/registrations',
+    :sessions => 'public/sessions'
+  }
 
 
 

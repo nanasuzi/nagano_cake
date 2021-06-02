@@ -30,16 +30,24 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
+    redirect_to orders_complete_path
   end
 
   def index
+    @orders = Order.all
+    @cart_items = current_customer.cart_items
   end
 
   def show
+    @order = Order.find(params[:id])
+    @cart_items = current_customer.cart_items
   end
 
   private
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :method_of_payment)
+    params.require(:order).permit(:postal_code, :address, :name, :method_of_payment, :shipping_cost, :billing_amount)
   end
 end

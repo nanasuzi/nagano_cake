@@ -1,0 +1,13 @@
+<h1>エンドユーザの退会確認画面</h1>
+
+<strong>本当に退会しますか？</strong>
+
+<p>
+  退会すると、会員情報や<br>
+  これまでの購入履歴が閲覧できなくなります。<br>
+  退会する場合は、「退会する」をクリックしてください。
+</p>
+
+<%= link_to "退会しない", customers_path %>
+<%= link_to "退会する", customers_withdrawl_path, method: :patch %>
+
