@@ -16,10 +16,12 @@
       <tr>
 
         <td><%= cart_item.item.name %></td>
-        <td><%= cart_item.item.price %></td>
+        <td><% price = cart_item.item.price * 1.1 %>
+            <%= price.round %>
+        </td>
         <td><%= cart_item.amount %></td>
 
-          <% sub_total = cart_item.item.price*cart_item.amount %>
+          <% sub_total = price.round*cart_item.amount %>
         <td>
           <%= sub_total %>
         </td>

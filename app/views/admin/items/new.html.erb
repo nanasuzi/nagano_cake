@@ -17,9 +17,7 @@
 
   <div>
     <label>ジャンル</label>
-    <% @genres.each do |genre| %>
-      <%= f.select :genre_id, [[genre.name, genre.id]], include_blank: "--選択してください--"  %>
-    <% end %>
+      <%= f.collection_select :genre_id, @genres, :id, :name, { prompt: "--選択してください--" }  %>
   </div>
 
   <div>

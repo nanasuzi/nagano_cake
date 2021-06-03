@@ -1,8 +1,8 @@
 class Admin::ItemsController < AdminsController
 
   def new
-    @genres = Genre.all
     @item = Item.new
+    @genres = Genre.all
   end
 
   def create
