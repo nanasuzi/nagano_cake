@@ -48,7 +48,7 @@
 </table>
 
 <p>--支払い方法--</p>
-<%= @order.method_of_payment ? "クレジットカード" : "銀行振込" %>
+<%= @order.method_of_payment %>
 
 <p>--お届け先--</p>
 <%= @order.postal_code + @order.address + @order.name %>

@@ -11,17 +11,18 @@ class Public::OrdersController < ApplicationController
      @order.customer_id = current_customer.id
      @cart_items = current_customer.cart_items
 
-    if params[:order][:address_option] == 0
+    if params[:order][:address_option] == "0"
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
 
-    elsif params[:order][:address_option] == 1
-      @order.address = current_customer.addresses.address
-      @order.name = current_customer.addresses.name
-      @order.postal_code = current_customer.addresses.postal_code
+    elsif params[:order][:address_option] == "1"
+      @address = Address.find(params[:order][:address_id])
+      @order.name = @address.name
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
 
-    else params[:order][:address_option] == 2
+    else params[:order][:address_option] == "2"
 
     end
   end
@@ -44,17 +45,18 @@ class Public::OrdersController < ApplicationController
     end
       current_customer.cart_items.destroy_all
 
+
     redirect_to orders_complete_path
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders
     @cart_items = current_customer.cart_items
   end
 
   def show
     @order = Order.find(params[:id])
-    @cart_items = current_customer.cart_items
+    @order_details = @order.order_details
   end
 
   private

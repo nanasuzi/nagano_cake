@@ -5,6 +5,6 @@ class AdminsController < ApplicationController
   end
 
   def after_sign_out_path_for(resource)
-      new_admin_admin_session_path
+      new_admin_session_path
   end
 end
