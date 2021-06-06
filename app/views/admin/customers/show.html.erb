@@ -19,3 +19,5 @@
 </p>
 
 <%= link_to "編集する", edit_admin_customer_path(@customer) %>
+
+<%= link_to "注文履歴一覧", admin_root_path(order_sort: 0, customers_number: @customer.id) %>

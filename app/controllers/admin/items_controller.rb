@@ -7,8 +7,12 @@ class Admin::ItemsController < AdminsController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to admin_items_path
+    if @item.save
+      redirect_to admin_items_path
+    else
+      @genres = Genre.all
+      render:new
+    end
   end
 
   def index

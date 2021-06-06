@@ -1,6 +1,12 @@
 <h1>エンドユーザの配送先一覧と配送先登録ページ</h1>
 
 <p>配送先登録/一覧</p>
+<% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました。
+  <%= @address.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
 
 <%= form_with model:@address, url:addresses_path, method: :post, local: true do |f| %>
 <p>郵便番号(ハイフンなし)</p>

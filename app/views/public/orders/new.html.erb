@@ -1,5 +1,12 @@
 <h1>エンドユーザの注文画面</h1>
 
+<% if @order.errors.any? %>
+  <%= @order.errors.count %>件のエラーが発生しました。
+  <%= @order.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
   <%= form_with model:@order, url:orders_check_path, method: :post, local: true do |f| %>
 
 <p>支払い方法</p>

@@ -1,5 +1,12 @@
 <h1>管理者の商品ジャンル一覧ページ＆追加登録画面</h1>
 
+<% if @genre.errors.any? %>
+  <%= @genre.errors.count %>件のエラーが発生しました。
+  <%= @genre.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <%= form_with model:@genre, url: admin_genres_path, method: :post, local:true do |f| %>
 <label>ジャンル名</label>
 <%= f.text_field :name, placeholder: "ジャンル名" %>

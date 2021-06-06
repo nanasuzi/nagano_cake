@@ -14,4 +14,8 @@ class Order < ApplicationRecord
     発送済み: 4, #発送済み
   }
 
+  validates :postal_code, presence: true, length: { is:7 }
+  validates :address, presence: true
+  validates :name, presence: true
+
 end
