@@ -21,14 +21,6 @@ root to: 'public/homes#top'
   }
 
 
-
-
-
-
-
-
-
-
     devise_for :admins, path: 'admin', controllers: {
       :sessions => 'admin/sessions'
     }

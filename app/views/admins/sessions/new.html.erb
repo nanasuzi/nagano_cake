@@ -1,34 +1,39 @@
 <div class= "container">
   <div class="row">
-    <div class= "mx-auto">
-
-
-<h3><span class="text-white bg-secondary">管理者ログイン</span></h3>
+<h3><span class="col-sm-2 text-white bg-secondary">管理者ログイン</span></h3>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  </div>
+</div>
 
+
+  <div class="container">
     <div class="form-group row">
-      <label class="col-sm-5 col-form-label" for="email">メールアドレス</label>
-      <div class= "col-sm-7">
+      <label class="col-sm-2 col-form-label" for="email">メールアドレス</label>
+      <div class= "col-sm-10">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="passward" class="col-sm-5 col-form-label">パスワード</label>
-        <div class="col-sm-7">
+      <label for="passward" class="col-sm-2 col-form-label">パスワード</label>
+        <div class="col-sm-10">
           <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
         </div>
     </div>
+  </div>
 
+ <div class="container">
+   <div class="row">
+     <div class="mx-auto">
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="field ">
       <%= f.check_box :remember_me %>
           記憶させる
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
   </div>
 <% end %>
 

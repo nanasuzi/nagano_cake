@@ -13,20 +13,34 @@
   <body>
 
     <header>
-      <nav>
+      <nav class="navbar navbar-expand-lg navbar-dark">
 
         <%= link_to admin_root_path(order_sort: 1) do %>
           <%= image_tag 'logo.jpeg', size: '50x50'%>
         <% end %>
 
-          <ul>
-              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+          <ul class="navbar-nav ml-auto">
 
-              <%= link_to 'ジャンル一覧', admin_genres_path %>
-
+              <li class="nav-item btn btn-outline-dark bg-light mx-2">
               <%= link_to '商品一覧', admin_items_path %>
+              </li>
 
+              <li class="nav-item btn btn-outline-dark bg-light mx-2">
               <%= link_to '会員一覧', admin_customers_path %>
+              </li>
+
+              <li class="nav-item btn btn-outline-dark bg-light mx-2">
+              <%= link_to '注文履歴一覧', admin_root_path %>
+              </li>
+
+               <li class="nav-item btn btn-outline-dark bg-light mx-2">
+              <%= link_to 'ジャンル一覧', admin_genres_path %>
+              </li>
+
+              <li class="nav-item btn btn-outline-dark bg-light mx-2">
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+              </li>
+
           </ul>
       </nav>
     </header>

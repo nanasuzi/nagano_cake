@@ -1,12 +1,18 @@
-<h1>管理者の商品詳細ページ</h1>
+  <div class= "container">
+      <label class="px-3 bg-secondary"><h4 class="text-white">商品詳細</h4></label>
+        <div class="row col-12">
+          <div class="col-5">
+          <%= attachment_image_tag @item, :image, :fill, 350, 250 %>
+          </div>
 
-  <h3>商品詳細</h3>
-    <%= attachment_image_tag @item, :image, :fill, 60, 60 %>
 
-  <div>
-  <label>商品名</label>
+  <div class="row col-5 d-flex flex-column">
+
+    <div>
+    <label>商品名</label>
     <%= @item.name %>
-  </div>
+    </div>
+
 
   <div>
   <label>商品説明</label>
@@ -23,6 +29,7 @@
     <%= @item.price %>
   </div>
 
+
   <div>
   <label>販売ステータス</label>
     <% if @item.is_active %>
@@ -32,6 +39,10 @@
     <% end %>
   </div>
 
-<div>
-  <%= link_to "編集する", edit_admin_item_path(@item) %>
+    <div>
+      <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-success" %>
+    </div>
+
+    </div>
+</div>
 </div>

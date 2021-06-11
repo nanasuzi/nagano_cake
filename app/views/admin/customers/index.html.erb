@@ -1,14 +1,14 @@
-<h1>管理者のエンドユーザ一覧ページ</h1>
+<div class="container">
+<label class="bg-secondary text-white"><h4 class="px-3">会員一覧</h4></label>
 
-<p>会員一覧</p>
-
-<table>
+<div class="row">
+<table class="table">
   <thead>
     <tr>
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
+      <th scop="col">会員ID</th>
+      <th scop="col">氏名</th>
+      <th scop="col">メールアドレス</th>
+      <th scop="col">ステータス</th>
     </tr>
   </thead>
 
@@ -21,13 +21,15 @@
       <td>
         <% customer.is_active %>
           <% if customer.is_active %>
-            有効
+            <span class="text-success">有効</span>
           <% else %>
-          　退会
+            <span class="text-muted">退会</span>
           <% end %>
       </td>
     </tr>
     <% end %>
-    <%= paginate @customers %>
   </tbody>
 </table>
+</div>
+</div>
+<%= paginate @customers, class: "mx-auto" %>

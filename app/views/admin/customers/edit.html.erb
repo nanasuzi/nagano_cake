@@ -1,44 +1,72 @@
-<h1>管理者のエンドユーザ編集ページ</h1>
+<div class= "container">
+  <div class="row">
+    <label class=" text-white bg-secondary px-3"><h4><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h4></label>
+  </div>
+</div>
 
-<%= @customer.last_name + @customer.first_name %>さんの会員情報編集
-
+<div class="container">
 <%= form_with model:@customer, url:admin_customer_path(@customer), method: :patch, local: true do |f| %>
 
-  <p>会員ID
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">会員ID</label>
+    <div class= "col-sm-9">
     <%= @customer.id %>
-  </p>
+    </div>
+  </div>
 
-  <p>氏名
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">氏名</label>
+    <div class= "col-sm-9">
     <%= f.text_field :last_name %>
     <%= f.text_field :first_name %>
-  </p>
+  </div>
+  </div>
 
-  <p>フリガナ
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">フリガナ</label>
+    <div class= "col-sm-9">
     <%= f.text_field :last_name_kana %>
     <%= f.text_field :first_name_kana %>
-  </p>
+   </div>
+  </div>
 
-  <p>郵便番号
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">郵便番号</label>
+          <div class= "col-sm-9">
     <%= f.text_field :postal_code %>
-  </p>
+   </div>
+  </div>
 
-  <p>住所
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">住所</label>
+          <div class= "col-sm-9">
     <%= f.text_field :address %>
-  </p>
+  </div>
+  </div>
 
-  <p>電話番号
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">電話番号</label>
+          <div class= "col-sm-9">
     <%= f.text_field :telephone_number %>
-  </p>
+  </div>
+  </div>
 
-  <p>メールアドレス
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">メールアドレス</label>
+          <div class= "col-sm-9">
     <%= f.text_field :email %>
-  </p>
+  </div>
+  </div>
 
-  <p>会員ステータス
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="genre">会員ステータス</label>
+          <div class= "col-sm-9">
     <%= f.radio_button :is_active, true %>有効
     <%= f.radio_button :is_active, false %>退会
-  </p>
+  </div>
+  </div>
 
-  <%= f.submit "変更を保存" %>
+  <%= f.submit "変更を保存", class: "btn btn-success" %>
 
 <% end %>
+</div>

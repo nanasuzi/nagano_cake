@@ -1,21 +1,21 @@
-<h1>管理者の商品一覧ページ</h1>
+<div class="container">
 
-<label>商品一覧</label>
+
+<label class="bg-secondary text-white"><h4 class="px-3">商品一覧</h4></label>
 
 <%= link_to new_admin_item_path do %>
-<i class="fas fa-plus"></i>
+<i class="fas fa-plus btn btn-primary"></i>
 <% end %>
 
-
-
-<table>
+<div class="row">
+<table class="table">
   <thead>
     <tr>
-    　<th>商品ID</th>
-    　<th>商品名</th>
-      <th>税抜き価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
+    　<th scop="col">商品ID</th>
+    　<th scop="col">商品名</th>
+      <th scop="col">税抜き価格</th>
+      <th scop="col">ジャンル</th>
+      <th scop="col">ステータス</th>
     </tr>
   </thead>
 
@@ -24,16 +24,20 @@
     <tr>
       <td><%= item.id %></td>
       <td><%= link_to "#{item.name}", admin_item_path(item) %></td>
-      <td><%= item.price %></td>
+      <td><%= item.price.to_s(:delimited) %></td>
       <td><%= item.genre.name %></td>
       <td><% if item.is_active %>
-            販売中
+            <span class="text-success">販売中</span>
           <% else %>
-            販売停止中
+            <span class="text-muted">販売停止中</span>
           <% end %>
       </td>
     </tr>
     <% end %>
-    <%= paginate @items %>
   </tbody>
 </table>
+  </div>
+</div>
+
+  <%= paginate @items %>
+

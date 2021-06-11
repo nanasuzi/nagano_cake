@@ -1,37 +1,56 @@
-<h1>管理者の商品編集ページ</h1>
+<div class= "container">
+  <div class="row">
+    <label class="mx-auto text-white bg-secondary px-3"><h4>商品編集</h4></label>
+  </div>
+</div>
 
+<div class="container">
 <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local:true do |f| %>
 
-<div>
-<label>商品画像</label>
-<%= f.attachment_field :image %>
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label" for="image">商品画像</label>
+    <div class= "col-sm-9">
+      <%= f.attachment_field :image %>
+　  </div>
 </div>
 
-<div>
-<label>商品名</label>
-<%= f.text_field :name %>
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label" for="name">商品名</label>
+    <div class= "col-sm-9">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
 </div>
 
-<div>
-<label>商品説明</label>
-<%= f.text_area :introduction %>
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label" for="introduction">商品説明</label>
+    <div class= "col-sm-9">
+      <%= f.text_area :introduction, class: "form-control" %>
+    </div>
 </div>
 
-<div>
-<label>ジャンル</label>
-  <%= f.collection_select :genre_id, @genres, :id, :name, {prompt: "--選択してください--"}  %>
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label" for="genre">ジャンル</label>
+    <div class= "col-sm-9">
+      <%= f.collection_select :genre_id, @genres, :id, :name, {prompt: "--選択してください--"}, class: "form-control"  %>
+    </div>
 </div>
 
-<div>
-<label>税抜き価格</label>
-<%= f.text_field :price %>
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label" for="price">税抜き価格</label>
+    <div class= "col-sm-9">
+      <%= f.text_field :price %>円
+    </div>
 </div>
 
-<div>
-<label>販売ステータス</label>
-<%= f.radio_button :is_active, true %>販売中
-<%= f.radio_button :is_active, false %>販売停止中
+<div class="form-group row">
+  <label class="col-sm-3 col-form-label" for="status">販売ステータス</label>
+    <div class= "col-sm-9">
+      <%= f.radio_button :is_active, true %>販売中
+      <%= f.radio_button :is_active, false %>販売停止中
+    </div>
 </div>
 
-<%= f.submit "変更を保存" %>
+  <div class="form-group row mx-auto">
+    <%= f.submit "変更を保存", class: "btn btn-success btn-block" %>
+  </div>
 <% end %>

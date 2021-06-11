@@ -1,12 +1,27 @@
-<h1>エンドユーザの商品詳細ページ</h1>
+<div class="row col-12">
+  <div class="offset-2 col-3">
+    <%= attachment_image_tag @item,:image, :fill, 350, 250 %>
+  </div>
 
-<%= attachment_image_tag @item,:image, :fill, 60, 60 %>
-<%= @item.name %>
+<div class="row col-5 d-flex flex-column text-left">
+
+<div class="my-3">
+<h3><%= @item.name %></h3>
+</div>
+
+<div class="my-3">
 <%= @item.introduction %>
-<%= @item.price %>
+</div>
+
+<div class="my-3">
+<% price = @item.price*1.1 %>
+¥<%= price.round.to_s(:delimited) %>円(税込み)
+</div>
 
 <%= form_with model:@cart_item, url:cart_items_path, method: :post, local: true do |f| %>
 <%= f.select :amount, (1..10).to_a, include_blank: "個数選択" %>
-<%= f.hidden_field :item_id, :value => @item.id %>
-<%= f.submit "カートに入れる" %>
+<%= f.hidden_field :item_id, :value =>  @item.id %>
+<%= f.submit "カートに入れる", class: "btn btn-success" %>
 <% end %>
+
+</div>

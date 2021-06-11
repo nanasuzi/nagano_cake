@@ -1,6 +1,13 @@
-<h1>エンドユーザの注文詳細画面</h1>
+<div class= "container">
+  <div class="row">
+    <label class="mx-auto text-white bg-secondary px-3"><h4>注文履歴詳細</h4></label>
+  </div>
+</div>
 
-<table>
+<div class="container">
+  <div class="row col-12">
+    <div class="row col-6">
+      <table class="table border" rules="cols">
 <h3>--注文情報--</h3>
   <tr>
     <th>注文日</th>
@@ -27,28 +34,39 @@
   </tr>
 
 </table>
+</div>
 
-<table>
+<div class="col-6">
+<table class="table border" rules="cols">
   <h3>--請求情報--</h3>
 
   <tr>
     <th>商品合計</th>
-    <td><%= @order.billing_amount - @order.shipping_cost %></td>
+    <td>
+      <% total = @order.billing_amount - @order.shipping_cost %>
+      <%= total.round.to_s(:delimited) %>
+    </td>
   </tr>
 
   <tr>
     <th>配送料</th>
-    <td><%= @order.shipping_cost %></td>
+    <td><%= @order.shipping_cost.to_s(:delimited) %></td>
   </tr>
 
   <tr>
     <th><strong>ご請求額</strong></th>
-    <td><%= @order.billing_amount %></td>
+    <td><%= @order.billing_amount.to_s(:delimited) %></td>
   </tr>
 
 </table>
+    </div>
+  </div>
+</div>
 
-<table>
+
+<div class="container">
+  <div class="row">
+    <table class="table border" rules="cols">
   <h3>--注文内容--</h3>
     <thead>
       <tr>
@@ -65,12 +83,12 @@
         <td><%= order_detail.item.name %></td>
         <td>
           <% price = order_detail.item.price * 1.1 %>
-          <%= price.round %>
+          <%= price.round.to_s(:delimited) %>
         </td>
         <td><%= order_detail.amount %></td>
         <td>
           <% sub_total = price.round * order_detail.amount %>
-          <%= sub_total %>
+          <%= sub_total.to_s(:delimited) %>
         </td>
       </tr>
     <% end %>

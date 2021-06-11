@@ -1,11 +1,19 @@
-<h1>エンドユーザのマイページ</h1>
+<div class= "container">
+  <div class="row">
+    <label class="text-white bg-secondary px-3"><h4>マイページ</h4></label>
+  </div>
+</div>
 
-<h1>マイページ</h1>
+<div class="container">
+  <div class="row my-2">
+<h4>登録情報</h4>
+<%= link_to "編集する", edit_customers_path, class: "btn btn-success" %>
+</div>
+</div>
 
-<p>--登録情報--</p>
-<%= link_to "編集する", edit_customers_path %>
-
-<table>
+<div class="container">
+  <div class="row">
+<table class="table border" rules="cols">
   <tr>
     <th>氏名</th>
     <td><%= current_customer.last_name + current_customer.first_name %></td>
@@ -36,11 +44,21 @@
     <td><%= current_customer.email %></td>
   </tr>
 </table>
+</div>
+</div>
 
-<p>--配送先--</p>
-<%= link_to "一覧を見る", addresses_path %>
+<div class="container">
+  <div class="row my-2">
+<h4>配送先</h4>
+<%= link_to "一覧を見る", addresses_path, class: "btn btn-primary mx-3"  %>
+</div>
+</div>
 
-<p>--注文履歴--</p>
-<%= link_to "注文履歴一覧", orders_path %>
+<div class="container">
+  <div class="row my-2">
+<h4>注文歴</h4>
+<%= link_to "一覧を見る", orders_path, class: "btn btn-primary mx-3"  %>
+</div>
+</div>
 
 

@@ -1,14 +1,19 @@
-<h1>エンドユーザの注文履歴一覧画面</h1>
+<div class= "container">
+  <div class="row">
+    <label class="mx-auto text-white bg-secondary px-3"><h4>注文歴一覧</h4></label>
+  </div>
+</div>
 
-<table>
+<div class="row col-6 offset-3">
+<table class="table border" rules="cols">
   <thead>
     <tr>
-      <th>注文日</th>
-      <th>配送先</th>
-      <th>注文商品</th>
-      <th>支払い金額</th>
-      <th>ステータス</th>
-      <th>注文詳細</th>
+      <th scop="col">注文日</th>
+      <th scop="col">配送先</th>
+      <th scop="col">注文商品</th>
+      <th scop="col">支払い金額</th>
+      <th scop="col">ステータス</th>
+      <th scop="col">注文詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -17,31 +22,27 @@
       <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
 
       <td>
-        <p>
-        〒<%= order.postal_code %>
-        </p>
-
-        <p>
-        <%= order.address %>
-        </p>
-
-        <p>
+        〒<%= order.postal_code %><br>
+        <%= order.address %><br>
         <%= order.name %>
-        </p>
       </td>
 
-        <% @cart_items.each do |cart_item| %>
-          <td><%= cart_item.item.name %></td>
+        <td>
+        <% order.order_details.each do |order_detail| %>
+          <p>
+            <%= order_detail.item.name %>
+          </p>
         <% end %>
+        </td>
 
         <td><%= order.billing_amount %></td>
 
         <td><%= order.order_status %></td>
 
-        <td><%= link_to "表示する", order_path(order) %></td>
+        <td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
     </tr>
     <% end %>
   </tbody>
-
-
 </table>
+
+</div>

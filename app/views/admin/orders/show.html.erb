@@ -1,35 +1,38 @@
-<h1>管理者の注文履歴詳細ページ</h1>
-<p>--注文履歴詳細--</p>
+  <div class= "container">
+      <label class="px-3 bg-secondary"><h4 class="text-white">注文詳細</h4></label>
 
 <p>購入者  <%= link_to "#{@order.name}", admin_customer_path(@order.customer_id) %></p>
 <p>注文日  <%= @order.created_at.strftime('%Y/%m/%d') %></p>
 
 <p>
-
 配送先
   〒<%= @order.postal_code.to_s.insert(3, "-") %>
   <%= @order.address %>
-    <div>
-      <%= @order.name %>
-    </div>
+　<%= @order.name %>
 </p>
 
 <p>
-  注文ステータス
+  支払い方法
+  <%= @order.method_of_payment %>
+</p>
+
+<p>
   <%= form_with model:@order, url:admin_order_path(@order), method: :patch, local: true do |f| %>
-  <%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
-  <%= f.submit "更新" %>
+  注文ステータス
+  <%= f.select :order_status, Order.order_statuses.keys.to_a, {}, class: "form-control-sm" %>
+  <%= f.submit "更新", class: "btn btn-success" %>
   <% end %>
 </p>
 
-<table>
+<div class="row">
+<table class="table col-8">
   <thead>
     <tr>
-      <th>商品名</th>
-      <th>単価（税込み）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>制作ステータス</th>
+      <th scop="col">商品名</th>
+      <th scop="col">単価（税込み）</th>
+      <th scop="col">数量</th>
+      <th scop="col">小計</th>
+      <th scop="col">制作ステータス</th>
     </tr>
   </thead>
 
@@ -37,6 +40,7 @@
     <tr>
       <% sum = 0 %>
       <% @order_details.each do |order_detail| %>
+      <tr>
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.item.price %></td>
       <td><%= order_detail.amount %></td>
@@ -48,22 +52,21 @@
 
       <td>
         <%= form_with model:order_detail, url:admin_order_detail_path(order_detail), method: :patch, local: true do |f| %>
-        <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {} %>
-        <%= f.submit "更新" %>
+        <%= f.select :making_status, OrderDetail.making_statuses.keys.to_a, {}, class: "form-control-sm" %>
+        <%= f.submit "更新", class: "btn btn-success" %>
         <% end %>
       </td>
-
-
-
 
       <% end %>
     </tr>
   </tbody>
 </table>
 
-<p>商品合計<%= sum %>円</p>
-
-<p>送料<%= @order.shipping_cost %>円</p>
-
-<p>請求金額合計<%= @order.billing_amount %>円</p>
+  <span class="col-4 align-self-end">
+        商品合計<%= sum.to_s(:delimited) %>円<br>
+        送料<%= @order.shipping_cost.to_s(:delimited)  %>円<br>
+        請求金額合計<%= @order.billing_amount.to_s(:delimited)  %>円
+      </span>
+</div>
+</div>
 

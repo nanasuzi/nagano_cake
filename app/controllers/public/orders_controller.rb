@@ -47,11 +47,11 @@ class Public::OrdersController < ApplicationController
       order_detail.order_id = @order.id
       order_detail.price = cart_item.item.price * 1.1
       order_detail.amount = cart_item.amount
-    　order_detail.save
+      order_detail.save
     end
-        current_customer.cart_items.destroy_all
+      current_customer.cart_items.destroy_all
 
-        redirect_to orders_complete_path
+      redirect_to orders_complete_path
 
     else
       @addresses = current_customer.addresses
@@ -62,7 +62,6 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders
-    @cart_items = current_customer.cart_items
   end
 
   def show
